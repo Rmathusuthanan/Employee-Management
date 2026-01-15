@@ -1,3 +1,4 @@
 node_modules
 # Hide sensitive information
 .env
+.env.*
