@@ -5,17 +5,20 @@ const route = express.Router();
 const {
   Employees,
   addEmployees,
-  UpdateEmployees,
+  getEmployee,
   deleteEmployees,
 } = require("../controller/employees.controller");
 
 //Get Employees Details
 route.get("/employees", Employees);
 
+//Get Employees Details
+route.get("/employee/:id", getEmployee);
+
 //POST Employees Details
 route.post("/employee", addEmployees);
 //Update Employees Details
-route.put("/employee/:id", UpdateEmployees);
+route.put("/employee/:id", getEmployee);
 //Delete Employees Details
 route.delete("/employee/:id", deleteEmployees);
 

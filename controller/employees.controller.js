@@ -1,8 +1,9 @@
 const Employee = require("../models/Employee.model");
 
-const Employees = (req, res) => {
-  console.log(req.body);
-  res.send(req.body);
+const Employees = async (req, res) => {
+  const employees = await Employee.find();
+
+  res.send(employees);
 };
 
 const addEmployees = async (req, res) => {
@@ -21,10 +22,22 @@ const addEmployees = async (req, res) => {
     return res.status(400).json({ message: error.message });
   }
 };
-const UpdateEmployees = (req, res) => {
-  res.json({ mgs: "Update Employees" });
+const getEmployee = async (req, res) => {
+  console.log(req.params.id);
+
+  try {
+    const employee = await Employee.findById(req.params.id);
+
+    if (employee == null) {
+      return res.status(404).json({ message: "Not found" });
+    } else {
+      return res.json(employee);
+    }
+  } catch (error) {
+    return res.json({ message: error.message });
+  }
 };
 const deleteEmployees = (req, res) => {
   res.json({ mgs: "DeleteEmployees" });
 };
-module.exports = { Employees, addEmployees, UpdateEmployees, deleteEmployees };
+module.exports = { Employees, addEmployees, getEmployee, deleteEmployees };
