@@ -7,6 +7,8 @@ const connectDB = require("./lib/db");
 
 const PORT = 3000;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(Employeeroutes);
 connectDB();
 

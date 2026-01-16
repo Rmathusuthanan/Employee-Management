@@ -1,9 +1,11 @@
 const Employees = (req, res) => {
-  res.json({ mgs: "Employees" });
+  console.log(req.body);
+  res.send(req.body);
 };
 
 const addEmployees = (req, res) => {
-  res.json({ mgs: "Add Employees" });
+  console.log(req.body);
+  res.send(req.body);
 };
 const UpdateEmployees = (req, res) => {
   res.json({ mgs: "Update Employees" });
