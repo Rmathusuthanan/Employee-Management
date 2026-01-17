@@ -37,7 +37,38 @@ const getEmployee = async (req, res) => {
     return res.json({ message: error.message });
   }
 };
+
+const updateEmployee = async (req, res) => {
+  console.log(req.params.id);
+
+  try {
+    const employee = await Employee.findByIdAndUpdate(
+      { _id: req.params.id },
+      {
+        name: req.body.name,
+      },
+      {
+        new: true,
+      }
+    );
+    console.log("EMployees", employee);
+    if (employee == null) {
+      return res.status(404).json({ message: "Not found" });
+    } else {
+      return res.json(employee);
+      
+    }
+  } catch (error) {
+    return res.json({ message: error.message });
+  }
+};
 const deleteEmployees = (req, res) => {
   res.json({ mgs: "DeleteEmployees" });
 };
-module.exports = { Employees, addEmployees, getEmployee, deleteEmployees };
+module.exports = {
+  Employees,
+  addEmployees,
+  getEmployee,
+  deleteEmployees,
+  updateEmployee,
+};
